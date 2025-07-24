@@ -17,7 +17,7 @@
 
 ```bash
 git clone https://github.com/nhiaz/notes.git
-cd note-manager
+cd notes
 ```
 
 2. Убедись, что у тебя установлен Python 3.7+  
