@@ -168,10 +168,7 @@ def add_notes(notes):
     text = input("Напишите вашу заметку: ")
 
     note = Note(text)
-
-    print(notes)
     notes.append(note)
-    print(notes)
 
     save_to_json(notes)
     
