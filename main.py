@@ -107,9 +107,9 @@ class Note:
         
     def check_deadline(self):
         try:
-            created_at = datetime.strptime(self._created_at, '%Y/%m/%d %H:%M:%S')
+            now = datetime.now()
             deadline = datetime.strptime(self._deadline, '%Y/%m/%d')
-            res = deadline - created_at
+            res = deadline - now
             return res
         except ValueError:
             print("В дедлайне указана не правильная дата! Дата должна быть в формате: ггггг/мм/дд")
@@ -206,9 +206,13 @@ def check_all_deadlines(notes):
 def change_deadline(notes):
     list_notes(notes)
     try:
-        note = int(input("Введите номер задачи: ")) - 1
-        notes[note].deadline = notes[note].change_deadline()
-        save_to_json(notes)
+        note = int(input("Введите номер задачи для изменения дедлайна: ")) - 1
+        deadline = notes[note].change_deadline()
+        if deadline is not None:
+            notes[note].deadline = deadline
+            save_to_json(notes)
+        else:
+            print("Не возможно присвоить данные")
     except ValueError:
         print("Номер задачи должен быть числом")
     except IndexError:
@@ -217,9 +221,13 @@ def change_deadline(notes):
 def change_priority(notes):
     list_notes(notes)
     try:
-        note = int(input("Введите номер задачи: ")) - 1
-        notes[note].priority = notes[note].change_priority()
-        save_to_json(notes)
+        note = int(input("Введите номер задачи для изменения приоритета: ")) - 1
+        priority = notes[note].change_priority()
+        if priority is not None:
+            notes[note].priority = priority
+            save_to_json(notes)
+        else:
+            print("Не возможно присвоить данные")
     except ValueError:
         print("Номер задачи должен быть числом")
     except IndexError:
@@ -228,9 +236,13 @@ def change_priority(notes):
 def change_status(notes):
     list_notes(notes)
     try:
-        note = int(input("Введите номер задачи: ")) - 1
-        notes[note].status = notes[note].change_status()
-        save_to_json(notes)
+        note = int(input("Введите номер задачи для изменения статуса: ")) - 1
+        status = notes[note].change_status()
+        if status is not None:
+            notes[note].status = status
+            save_to_json(notes)
+        else:
+            print("Не возможно присвоить данные")
     except ValueError:
         print("Номер задачи должен быть числом")
     except IndexError:
